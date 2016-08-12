@@ -36,4 +36,8 @@ public class PICPoint3D extends PICAbstractPoint<PICPoint3D> {
 	public boolean tolerantEquals(PICPoint3D other) {
 		return distanceSquared(other) < PICTolerance.ZERO_LENGTH * PICTolerance.ZERO_LENGTH;
 	}
+	
+	public String dump() {
+		return "x: " + x + ", y: " + y + ", z: " + z + System.lineSeparator();
+	}
 }

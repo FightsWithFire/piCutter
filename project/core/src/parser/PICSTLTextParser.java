@@ -23,8 +23,9 @@ public class PICSTLTextParser implements PICParser {
 		try (Stream<String> stream = Files.lines(Paths.get(input))) {
 			Iterator<String> it = stream.iterator();
 			// Currently, all triangles are going into the same tessellation. I may decide to separate by body later.
+			// TODO: I may want to make a wrapper that trims each line and stuff.
 			while (it.hasNext()) {
-				if (it.next().equals("outer loop")) {
+				if (it.next().trim().equals("outer loop")) {
 					this.processLoop(it);
 				}
 			}
@@ -43,11 +44,11 @@ public class PICSTLTextParser implements PICParser {
 			points[i] = processVertex(it);
 		}
 		
-		if (!it.next().equals("endloop")) {
+		if (!it.next().trim().equals("endloop")) {
 			// TODO: throw an exception
 		}
 		
-		tess.insertTriangle( new PICTriangle<PICPoint3D>(points[0], points[1], points[2]));
+		tess.insertTriangle(new PICTriangle<PICPoint3D>(points[0], points[1], points[2]));
 	}
 	
 	
@@ -57,7 +58,7 @@ public class PICSTLTextParser implements PICParser {
 			return null;
 		}
 		
-		String line = it.next();
+		String line = it.next().trim();
 		String[] split = line.split(" ");
 		if (split.length != 4) {
 			System.out.println("Malformed vertex line.");
@@ -84,7 +85,8 @@ public class PICSTLTextParser implements PICParser {
 	// TODO: set up a test framework
 	public static void main(String[] arguments) {
 		PICSTLTextParser parser = new PICSTLTextParser();
-		parser.parse("src/testdata/two_prisms.stl");
+		PICTessellation<PICPoint3D> tess = parser.parse("src/testdata/two_prisms.stl");
+		System.out.println(tess.dump());
 	}
 	
 	

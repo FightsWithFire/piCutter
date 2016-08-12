@@ -1,6 +1,9 @@
 *.class
+*.metadata
+*.recommenders
 
 # Package Files #
 *.jar
 *.war
 *.ear
+project/core/.settings/org.eclipse.jdt.core.prefs

@@ -1,17 +1,20 @@
 package geometry3D;
 
-import constants.PICLengths;
-import tessellation.PICAbstractPoint;
+import abstractgeometry.PICAbstractPoint;
+import constants.PICTolerance;
 
 public class PICPoint3D extends PICAbstractPoint<PICPoint3D> {
 	double x, y, z;
-	PICPoint3D(double x, double y, double z) {
+	
+	public PICPoint3D(double x, double y, double z) {
 		this.x = x;
 		this.y = y;
 		this.z = y;
 	}
+	
 	@Override
 	public int compareTo(PICPoint3D other) {
+		// TODO: this needs to behave correctly wrt equals and nullpointer exceptions.
 		return other.z < z || other.y < y || other.x < x ? -1 : 1;
 	}
 
@@ -31,6 +34,6 @@ public class PICPoint3D extends PICAbstractPoint<PICPoint3D> {
 	
 	@Override
 	public boolean tolerantEquals(PICPoint3D other) {
-		return distanceSquared(other) < PICLengths.ZERO_LENGTH * PICLengths.ZERO_LENGTH;
+		return distanceSquared(other) < PICTolerance.ZERO_LENGTH * PICTolerance.ZERO_LENGTH;
 	}
 }

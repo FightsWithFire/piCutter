@@ -1,9 +1,9 @@
 package parser;
 
-import java.io.File;
 
+import geometry3D.PICPoint3D;
 import tessellation.PICTessellation;
 
 public interface PICParser {
-	PICTessellation parse(File input);
+	PICTessellation<PICPoint3D> parse(String input);
 }

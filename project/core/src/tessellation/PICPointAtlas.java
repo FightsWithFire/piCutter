@@ -1,42 +1,34 @@
 package tessellation;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-// TODO: I need to make an abstract point class with a tolerant equals method.
+import abstractgeometry.PICAbstractPoint;
+
 public class PICPointAtlas<T extends PICAbstractPoint<T>> {
 	private List<T> points;
-	private boolean finished = false;
 	
 	PICPointAtlas() {
 		points = new ArrayList<T>();
 	}
 	
-	boolean insert(T item) {
-		if (finished) {
-			return false;
-		} else {
-			points.add(item);
-			return true;
+	// This is a naive interpretation.
+	int insert(T item) {
+		for (int i = 0; i < points.size(); i++) {
+			if (item.tolerantEquals(points.get(i))) {
+				return i;
+			}
 		}
+		points.add(item);
+		return points.size() - 1;
 	}
 	
-	boolean finish() {
-		if (finished) {
-			System.out.println("Trying to finish an atlas more than once.");
-			return false;
-		}
-		Collections.sort(points);
-		removeRedundant();
-		return true;
+	int insertUnique(T item) {
+		points.add(item);
+		return points.size() - 1;
 	}
 	
-	private void removeRedundant() {
-		// TODO: stub method
-	}
-	
-	int getIndex(T item) {
-		return -1;
+	T get(int index) {
+		return points.get(index);
 	}
 }

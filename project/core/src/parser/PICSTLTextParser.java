@@ -11,11 +11,11 @@ import geometry3D.PICPoint3D;
 import tessellation.PICTessellation;
 
 public class PICSTLTextParser implements PICParser {
-	private PICTessellation<PICPoint3D> tess;
+	private PICTessellation<PICPoint3D> tess_;
 
 	public PICSTLTextParser() {
 		// TODO: options.
-		tess = new PICTessellation<PICPoint3D>();
+		tess_ = new PICTessellation<PICPoint3D>();
 	}
 
 	@Override
@@ -36,7 +36,7 @@ public class PICSTLTextParser implements PICParser {
 			e.printStackTrace();
 		}
 		// TODO Auto-generated method stub
-		return tess;
+		return tess_;
 	}
 
 	void processLoop(Iterator<String> it) {
@@ -50,7 +50,7 @@ public class PICSTLTextParser implements PICParser {
 			// TODO: throw an exception
 		}
 
-		tess.insertTriangle(new PICTriangle<PICPoint3D>(points[0], points[1], points[2]));
+		tess_.insertTriangle(new PICTriangle<PICPoint3D>(points[0], points[1], points[2]));
 	}
 
 	PICPoint3D processVertex(Iterator<String> it) {

@@ -18,7 +18,7 @@ public class PIC2DGeomUtilsTests {
 		PICPoint2D expected = new PICPoint2D(0, 0);
 		Assert.assertTrue("Intersection did not match expected point " + expected.dump(),
 				expected.tolerantEquals(intersection));
-		
+
 		// Same as above with one line with opposite direction
 		start1 = new PICPoint2D(1, 1);
 		end1 = new PICPoint2D(-1, -1);
@@ -41,7 +41,7 @@ public class PIC2DGeomUtilsTests {
 		PICPoint2D intersection = PIC2DGeomUtils.intersect(start1, end1, start2, end2);
 		Assert.assertNull(intersection);
 	}
-	
+
 	@Test
 	public void testCoincidentDisjointSegments() {
 		PICPoint2D start1 = new PICPoint2D(1, 1);

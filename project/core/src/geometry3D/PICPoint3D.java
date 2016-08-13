@@ -11,12 +11,6 @@ public class PICPoint3D extends PICAbstractPoint<PICPoint3D> {
 		this.y = y;
 		this.z = y;
 	}
-	
-	@Override
-	public int compareTo(PICPoint3D other) {
-		// TODO: this needs to behave correctly wrt equals and nullpointer exceptions.
-		return other.z < z || other.y < y || other.x < x ? -1 : 1;
-	}
 
 	double dot(PICPoint3D other) {
 		return x * other.x + y * other.y + z * other.z;
@@ -30,6 +24,14 @@ public class PICPoint3D extends PICAbstractPoint<PICPoint3D> {
 	
 	double distance(PICPoint3D other) {
 		return Math.sqrt(distanceSquared(other));
+	}
+	
+	PICPoint3D subtract(PICPoint3D other) {
+		return new PICPoint3D(x - other.x, y - other.y, z - other.z);
+	}
+	
+	PICPoint3D add(PICPoint3D other) {
+		return new PICPoint3D(x + other.x, y + other.y, z + other.z);
 	}
 	
 	@Override

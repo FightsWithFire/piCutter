@@ -14,6 +14,7 @@ public class PICTriangle<T extends PICAbstractPoint<T>> {
 		sb.append(p1.dump());
 		sb.append(p2.dump());
 		sb.append(p3.dump());
+		sb.append(System.lineSeparator());
 		return sb.toString();
 	}
 }

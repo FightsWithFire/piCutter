@@ -4,7 +4,7 @@ import java.util.List;
 
 public class PICPolygon {
 	private List<PICContour> contours;
-	
+
 	public String dump() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("Polygon");

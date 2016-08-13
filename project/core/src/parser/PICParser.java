@@ -1,6 +1,5 @@
 package parser;
 
-
 import geometry3D.PICPoint3D;
 import tessellation.PICTessellation;
 
